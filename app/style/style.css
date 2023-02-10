@@ -1,6 +1,6 @@
 :root {
   --header-height: 48px;
-  --header-color: burlywood;
+  --header-color: #deb8879c;
 }
 * {
   z-index: 10;
