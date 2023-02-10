@@ -1,0 +1,14 @@
+body {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  height: calc(100vh - 16px);
+  margin: 8px;
+}
+.memo-aria {
+  height: calc(100% - 4px);
+  border: solid 2px;
+}
+.help {
+  display: none;
+  position: absolute;
+}
