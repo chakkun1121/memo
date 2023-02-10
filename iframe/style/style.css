@@ -1,0 +1,7 @@
+body {
+  margin: 0;
+  padding: 0;
+  border: solid 2px;
+  height: calc(100vh - 4px);
+  width: calc(100vw - 4px);
+}
