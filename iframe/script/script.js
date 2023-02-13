@@ -24,14 +24,10 @@ function createTextBox() {
   const div = document.createElement("div");
   div.id = textBoxId;
   div.className = "text-box";
-  div.innerHTML = `<div class="text-box-move" draggable></div><div class="text-box-writeable" contenteditable></div>`;
+  div.innerHTML = `<div id="textBoxMoveID${textBoxId}" class="text-box-move"></div><div class="text-box-writeable" contenteditable></div>`;
   document.body.appendChild(div);
-  window.addEventListener("DOMContentLoaded", () => {
-    const element = document.getElementById(textBoxId);
-    element.addEventListener("dragstart", function (ev) {
-      ev.dataTransfer.setData("text/plain", ev.target.id);
-    });
-  });
+  div.addEventListener("mousedown", mdown, false);
+  div.addEventListener("touchstart", mdown, false);
 }
 function uploadImage() {
   const input = document.createElement("input");
@@ -54,16 +50,69 @@ function addImageBox(data) {
   const div = document.createElement("div");
   div.id = imageBoxId;
   div.className = "image-box";
-  div.innerHTML = `<div class="image-box-move" draggable></div><img class="image-box-image" src="${data}">`;
+  div.innerHTML = `<div class="image-box-move"></div><img class="image-box-image" src="${data}">`;
   document.body.appendChild(div);
+  div.addEventListener("mousedown", mdown, false);
+  div.addEventListener("touchstart", mdown, false);
 }
-function dragover_handler(ev) {
-  ev.preventDefault();
-  ev.dataTransfer.dropEffect = "move";
+
+//マウスが押された際の関数
+function mdown(e) {
+  //クラス名に .drag を追加
+  this.classList.add("drag");
+
+  //タッチデイベントとマウスのイベントの差異を吸収
+  if (e.type === "mousedown") {
+    var event = e;
+  } else {
+    var event = e.changedTouches[0];
+  }
+
+  //要素内の相対座標を取得
+  x = event.pageX - this.offsetLeft;
+  y = event.pageY - this.offsetTop;
+
+  //ムーブイベントにコールバック
+  document.body.addEventListener("mousemove", mmove, false);
+  document.body.addEventListener("touchmove", mmove, false);
 }
-function drop_handler(ev) {
-  ev.preventDefault();
-  // 移動された要素のidを取得して、その要素をtargetのDOMに追加する
-  const data = ev.dataTransfer.getData("text/plain");
-  console.log(data);
+
+//マウスカーソルが動いたときに発火
+function mmove(e) {
+  //ドラッグしている要素を取得
+  const drag = document.getElementsByClassName("drag")[0];
+
+  //同様にマウスとタッチの差異を吸収
+  if (e.type === "mousemove") {
+    var event = e;
+  } else {
+    var event = e.changedTouches[0];
+  }
+
+  //フリックしたときに画面を動かさないようにデフォルト動作を抑制
+  e.preventDefault();
+
+  //マウスが動いた場所に要素を動かす
+  drag.style.top = event.pageY - y + "px";
+  drag.style.left = event.pageX - x + "px";
+
+  //マウスボタンが離されたとき、またはカーソルが外れたとき発火
+  drag.addEventListener("mouseup", mup, false);
+  document.body.addEventListener("mouseleave", mup, false);
+  drag.addEventListener("touchend", mup, false);
+  document.body.addEventListener("touchleave", mup, false);
+}
+
+//マウスボタンが上がったら発火
+function mup(e) {
+  const drag = document.getElementsByClassName("drag")[0];
+
+  //ムーブベントハンドラの消去
+  document.body.removeEventListener("mousemove", mmove, false);
+  drag.removeEventListener("mouseup", mup, false);
+  document.body.removeEventListener("touchmove", mmove, false);
+  drag.removeEventListener("touchend", mup, false);
+
+  //クラス名 .drag も消す
+  drag.classList.remove("drag");
 }
