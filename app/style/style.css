@@ -26,6 +26,19 @@ header {
   right: 0;
   transition: 1s;
 }
+.menu-buttons {
+  display: flex;
+  align-items: center;
+}
+.menu-button {
+  margin: 0 8px;
+  background-color: unset;
+  border-width: 0;
+}
+.menu-button svg {
+  height: 24px;
+  width: 24px;
+}
 .hide {
   top: calc(-1 * calc(var(--header-height) + 16px));
 }

@@ -6,3 +6,22 @@ window.onload = function () {
     throw new Error("window.parent is not defined.");
   }
 };
+
+function saveAsTxt() {
+  const text = txtArea.innerText;
+  console.log(text);
+  const blob = new Blob([text], { type: "text/plain" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "text.txt";
+  a.click();
+  a.remove();
+}
+
+function createTextBox() {
+  const div = document.createElement("div");
+  div.className = "text-box";
+  div.innerHTML = `<div class="text-box-move"></div><div class="text-box-writeable" contenteditable></div>`;
+  document.body.appendChild(div);
+}
