@@ -3,6 +3,7 @@ body {
   padding: 0;
   height: 100vh;
   width: 100vw;
+  overflow: hidden;
 }
 .txt-area {
   margin: 0;
@@ -19,7 +20,19 @@ body {
   height: 100px;
   width: 100px;
 }
+.text-box-move {
+  cursor: pointer;
+  position: absolute;
+  width: 100%;
+  height: 0.5em;
+}
 .text-box-writeable {
   height: -webkit-fill-available;
   width: 100%;
+}
+.image-box {
+  border: solid 5px;
+  position: absolute;
+  top: 100px;
+  left: 100px;
 }

@@ -1,17 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style/style.css">
+  <script rel="script" src="../library/uuid.js"></script>
   <script rel="script" src="script/script.js"></script>
   <title>本体 | メモアプリ</title>
 </head>
 
 <body>
-  <div class="txt-area" id="txtArea" contenteditable></div>
+  <div class="txt-area" id="txtArea" contenteditable ondrop="drop_handler(event)" ondragover="dragover_handler(event)">
+  </div>
 </body>
 
 </html>

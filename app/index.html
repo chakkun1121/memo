@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 
 <head>
   <meta charset="UTF-8">
@@ -17,8 +17,7 @@
     <div class="header-right">
       <div class="menu-buttons">
         <button class="menu-button" onclick="iframe.contentWindow.createTextBox()">
-          <svg version="1.1" id="_x32_" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-            x="0px" y="0px" viewBox="0 0 512 512" xml:space="preserve">
+          <svg viewBox="0 0 512 512" xml:space="preserve">
             <g>
               <path d="M359.244,224.004h-59.988c-6.217,0-11.258-5.043-11.258-11.258v-59.992c0-6.215-5.039-11.254-11.256-11.254
         		h-41.486c-6.217,0-11.258,5.039-11.258,11.254v59.992c0,6.215-5.039,11.258-11.256,11.258h-59.988
@@ -33,8 +32,7 @@
           </svg>
         </button>
         <button class="menu-button" onclick="iframe.contentWindow.saveAsTxt()">
-          <svg version="1.1" id="_x32_" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-            x="0px" y="0px" viewBox="0 0 512 512" xml:space="preserve">
+          <svg viewBox="0 0 512 512" xml:space="preserve">
             <g>
               <path d="M243.591,309.362c3.272,4.317,7.678,6.692,12.409,6.692c4.73,0,9.136-2.376,12.409-6.689l89.594-118.094
         		c3.348-4.414,4.274-8.692,2.611-12.042c-1.666-3.35-5.631-5.198-11.168-5.198H315.14c-9.288,0-16.844-7.554-16.844-16.84V59.777
@@ -46,24 +44,35 @@
             </g>
           </svg>
         </button>
+        <button class="menu-button" onclick="iframe.contentWindow.uploadImage()">
+          <svg viewBox="0 0 512 512" xml:space="preserve">
+            <g>
+              <path d="M99.281,399.469h320.094c6.172,0,11.844-3.422,14.719-8.875c2.844-5.469,2.438-12.078-1.063-17.141
+        		l-69.156-100.094c-6.313-9.125-16.781-14.516-27.906-14.297s-21.406,5.969-27.375,15.359l-19.719,30.984l-54.828-79.359
+        		c-6.313-9.172-16.797-14.531-27.922-14.328s-21.406,5.969-27.375,15.359L85.281,373.984c-3.25,5.109-3.469,11.578-0.531,16.875
+        		C87.656,396.172,93.219,399.469,99.281,399.469z" style="fill: rgb(75, 75, 75);"></path>
+              <path d="M322.672,223.906c23.688,0,42.922-19.219,42.922-42.922c0-23.688-19.234-42.906-42.922-42.906
+        		c-23.703,0-42.922,19.219-42.922,42.906C279.75,204.688,298.969,223.906,322.672,223.906z"
+                style="fill: rgb(75, 75, 75);"></path>
+              <path d="M0,19.703v472.594h512v-25.313V19.703H0z M461.375,441.672H50.625V70.328h410.75V441.672z"
+                style="fill: rgb(75, 75, 75);"></path>
+            </g>
+          </svg></button>
       </div>
     </div>
   </header>
 
   <button id="moveHeaderButton" class="move-header-button" onclick="moveHeader()">
     <div id="downIcon">
-      <svg version="1.1" id="_x32_" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-        x="0px" y="0px" viewBox="0 0 512 512" xml:space="preserve">
+      <svg viewBox="0 0 512 512" xml:space="preserve">
         <g>
-          <polygon class=" st0"
-            points="440.189,92.085 256.019,276.255 71.83,92.085 0,163.915 256.019,419.915 512,163.915 	"
+          <polygon points="440.189,92.085 256.019,276.255 71.83,92.085 0,163.915 256.019,419.915 512,163.915 	"
             style="fill: rgb(75, 75, 75);"></polygon>
         </g>
       </svg>
     </div>
     <div id="upIcon">
-      <svg version="1.1" id="_x32_" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-        x="0px" y="0px" viewBox="0 0 512 512" xml:space="preserve">
+      <svg viewBox="0 0 512 512" xml:space="preserve">
         <g>
           <polygon points="255.992,92.089 0,348.081 71.821,419.911 255.992,235.74 440.18,419.911 512,348.081 	"
             style="fill: rgb(75, 75, 75);"></polygon>
