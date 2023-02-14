@@ -51,16 +51,18 @@ function addImageBox(data) {
   const div = document.createElement("div");
   div.id = imageBoxId;
   div.className = "image-box";
-  div.innerHTML = `<div class="image-box-move"></div><img class="image-box-image" src="${data}">`;
+  div.innerHTML = `<div class="image-box-move" id="imgBoxMoveId_${imageBoxId}"></div><img class="image-box-image" src="${data}">`;
   document.body.appendChild(div);
-  div.addEventListener("mousedown", mdown, false);
-  div.addEventListener("touchstart", mdown, false);
+  const moveElement = document.getElementById(`imgBoxMoveId_${imageBoxId}`);
+  moveElement.addEventListener("mousedown", mdown, false);
+  moveElement.addEventListener("touchstart", mdown, false);
 }
 
 //マウスが押された際の関数
 function mdown(e) {
   //クラス名に .drag を追加
   const ID = this.id;
+  console.log(ID);
   const moveElement = document.getElementById(ID);
   moveElement.classList.add("drag");
   //タッチデイベントとマウスのイベントの差異を吸収
