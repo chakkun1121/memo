@@ -26,8 +26,9 @@ function createTextBox() {
   div.className = "text-box";
   div.innerHTML = `<div id="textBoxMoveID${textBoxId}" class="text-box-move"></div><div class="text-box-writeable" contenteditable></div>`;
   document.body.appendChild(div);
-  div.addEventListener("mousedown", mdown, false);
-  div.addEventListener("touchstart", mdown, false);
+  const moveElement = document.getElementById(`textBoxMoveID${textBoxId}`);
+  moveElement.addEventListener("mousedown", mdown, false);
+  moveElement.addEventListener("touchstart", mdown, false);
 }
 function uploadImage() {
   const input = document.createElement("input");
@@ -59,8 +60,9 @@ function addImageBox(data) {
 //マウスが押された際の関数
 function mdown(e) {
   //クラス名に .drag を追加
-  this.classList.add("drag");
-
+  const ID = this.id;
+  const moveElement = document.getElementById(ID);
+  moveElement.classList.add("drag");
   //タッチデイベントとマウスのイベントの差異を吸収
   if (e.type === "mousedown") {
     var event = e;
@@ -81,7 +83,9 @@ function mdown(e) {
 function mmove(e) {
   //ドラッグしている要素を取得
   const drag = document.getElementsByClassName("drag")[0];
-
+  const id = drag.id.slice(13);
+  console.log(id);
+  const mainElement = document.getElementById(id);
   //同様にマウスとタッチの差異を吸収
   if (e.type === "mousemove") {
     var event = e;
@@ -91,10 +95,10 @@ function mmove(e) {
 
   //フリックしたときに画面を動かさないようにデフォルト動作を抑制
   e.preventDefault();
-
+  console.log(event.pageY);
   //マウスが動いた場所に要素を動かす
-  drag.style.top = event.pageY - y + "px";
-  drag.style.left = event.pageX - x + "px";
+  mainElement.style.top = event.pageY - y + "px";
+  mainElement.style.left = event.pageX - x + "px";
 
   //マウスボタンが離されたとき、またはカーソルが外れたとき発火
   drag.addEventListener("mouseup", mup, false);
@@ -105,13 +109,13 @@ function mmove(e) {
 
 //マウスボタンが上がったら発火
 function mup(e) {
+  console.log("ドラッグアンドドロップ終わりました");
   const drag = document.getElementsByClassName("drag")[0];
-
   //ムーブベントハンドラの消去
   document.body.removeEventListener("mousemove", mmove, false);
-  drag.removeEventListener("mouseup", mup, false);
+  document.getElementById(drag.id).removeEventListener("mouseup", mup, false);
   document.body.removeEventListener("touchmove", mmove, false);
-  drag.removeEventListener("touchend", mup, false);
+  document.getElementById(drag.id).removeEventListener("touchend", mup, false);
 
   //クラス名 .drag も消す
   drag.classList.remove("drag");
